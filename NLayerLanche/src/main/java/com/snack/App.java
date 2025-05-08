@@ -30,7 +30,6 @@ public class App {
 
     public static void initializeProducts() {
         Product product1 = new Product(1, "Hotdog", 4.00f, "C:\\Users\\aluno\\Produtos\\HotDog.jpg");
-
         productFacade.append(product1);
     }
 

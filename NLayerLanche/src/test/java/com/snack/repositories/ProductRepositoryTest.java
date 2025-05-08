@@ -80,7 +80,7 @@ public class ProductRepositoryTest {
     @Test
     public void tentarRemoverProdutoInexistente(){
         Assertions.assertThrows(NullPointerException.class,()->{
-            productRepository.remove(10);
+            productRepository.remove(2);
         });
     }
 
@@ -93,11 +93,11 @@ public class ProductRepositoryTest {
     }
     
     //9. Verificar se o repositório aceita a adição de produtos com IDs duplicados (espera-se que não)
+    //não terminei
     @Test
     public void verificarRepositorioAdicionarIdDuplicado(){
         Product product2 = new Product(1, "X-tudo", 12.4f, "");
         productRepository.append(product2);
-
     }
 
     //10. Confirmar que o repositório retorna uma lista vazia ao ser inicializado (List)
