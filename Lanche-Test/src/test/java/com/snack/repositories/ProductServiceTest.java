@@ -4,6 +4,8 @@ import com.snack.entities.Product;
 import com.snack.services.ProductService;
 import org.junit.jupiter.api.*;
 
+import java.nio.file.Paths;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ProductServiceTest {
     private ProductService productService;
@@ -58,7 +60,8 @@ public class ProductServiceTest {
     @Test
     @Order(5)
     public void obterCaminhoImagemPorId(){
-        Assertions.assertEquals("C:\\Users\\aluno.fsa\\Documents\\GitHub\\Lanche-Test\\NLayerLanche\\src\\test\\resources\\images\\1.jpg",productService.getImagePathById(1));
+        String expectedPath = Paths.get("src", "test", "resources", "images", "1.jpg").toAbsolutePath().toString();
+        Assertions.assertEquals(expectedPath,productService.getImagePathById(1));
     }
 
 

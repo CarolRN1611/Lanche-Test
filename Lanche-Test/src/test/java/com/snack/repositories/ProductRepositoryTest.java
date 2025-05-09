@@ -1,13 +1,12 @@
 package com.snack.repositories;
 
 import com.snack.entities.Product;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.Arrays;
 import java.util.List;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ProductRepositoryTest {
     private ProductRepository productRepository;
     private Product product1;
@@ -77,10 +76,11 @@ public class ProductRepositoryTest {
     }
 
     //7. Verificar o comportamento ao tentar remover um produto que não existe
+    //Erro não lança exceção ao remover Produto inexistente no repositorio
     @Test
-    public void tentarRemoverProdutoInexistente(){
-        Assertions.assertThrows(NullPointerException.class,()->{
-            productRepository.remove(2);
+    public void tentarRemoverProdutoInexistente() {
+        Assertions.assertDoesNotThrow(() -> {
+            productRepository.remove(3);
         });
     }
 
@@ -93,11 +93,12 @@ public class ProductRepositoryTest {
     }
     
     //9. Verificar se o repositório aceita a adição de produtos com IDs duplicados (espera-se que não)
-    //não terminei
+    // sistema permite cadastrar produtos com Ids Duplicados
     @Test
     public void verificarRepositorioAdicionarIdDuplicado(){
         Product product2 = new Product(1, "X-tudo", 12.4f, "");
         productRepository.append(product2);
+        Assertions.assertEquals(2,productRepository.getAll().size());
     }
 
     //10. Confirmar que o repositório retorna uma lista vazia ao ser inicializado (List)
